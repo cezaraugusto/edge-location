@@ -11,7 +11,7 @@
     "edge-location": "bin.js"
   },
   "name": "edge-location",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Approximates the current location of the Edge browser across platforms.",
   "main": "module.js",
   "author": {
