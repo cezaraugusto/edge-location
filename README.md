@@ -28,9 +28,10 @@ console.log(braveLocation())
 
 ## Related projects
 
-* [chrome-location](https://github.com/hughsk/chrome-location/pulls)
-* [chrome-location2](https://github.com/cezaraugusto/chrome-location2) (like Chromium location with fallback support to Chromium)
-* [firefox-location](https://github.com/hughsk/firefox-location/pulls)
+* [chrome-location](https://github.com/hughsk/chrome-location)
+* [chrome-location2](https://github.com/cezaraugusto/chrome-location2) (like `chromium-location` with fallback support to Chromium)
+* [firefox-location](https://github.com/hughsk/firefox-location)
+* [brave-location](https://github.com/cezaraugusto/brave-location)
 * [vivaldi-location](https://github.com/jandrey/vivaldi-location)
 * [opera-location](https://github.com/jandrey/opera-location)
 
