@@ -1,0 +1,46 @@
+{
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cezaraugusto/edge-location.git"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "bin": {
+    "edge-location": "bin.js"
+  },
+  "name": "edge-location",
+  "version": "0.0.0",
+  "description": "Approximates the current location of the Edge browser across platforms.",
+  "main": "module.js",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.net"
+  },
+  "scripts": {
+    "test": "jasmine"
+  },
+  "files": [
+    "module.js",
+    "bin.js",
+    "scan"
+  ],
+  "keywords": [
+    "edge",
+    "browser",
+    "spawn",
+    "location",
+    "process",
+    "guesstimate"
+  ],
+  "dependencies": {
+    "userhome": "^1.0.0",
+    "which": "^2.0.2"
+  },
+  "devDependencies": {
+    "jasmine": "^4.2.0",
+    "mock-require": "^3.0.3"
+  }
+}
