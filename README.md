@@ -13,9 +13,9 @@
 
 ```js
 // Returns the path to edge as a string.
-const braveLocation = require('edge-location')
+const edgeLocation = require('edge-location')
 
-console.log(braveLocation())
+console.log(edgeLocation())
 // /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge
 ```
 
