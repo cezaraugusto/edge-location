@@ -2,7 +2,7 @@ const scanOsxPath = require('./scan/scanOsxPath')
 const scanWindowsPath = require('./scan/scanWindowsPath')
 const scanUnknownPlatformPath = require('./scan/scanUnknownPlatformPath')
 
-module.exports = function locateBrave () {
+module.exports = function locateEdge () {
   switch (process.platform) {
     case 'darwin':
       return scanOsxPath()
