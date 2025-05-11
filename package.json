@@ -5,7 +5,7 @@
     "url": "https://github.com/cezaraugusto/edge-location.git"
   },
   "name": "edge-location",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Approximates the current location of the Edge browser across platforms.",
   "type": "module",
   "exports": {
@@ -17,7 +17,9 @@
   },
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rslib build",
     "check": "biome check --write",
