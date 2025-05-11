@@ -1,9 +1,11 @@
-[action-image]: https://github.com/cezaraugusto/edge-location/workflows/CI/badge.svg
-[action-url]: https://github.com/cezaraugusto/edge-location/actions?query=workflow%3ACI
 [npm-image]: https://img.shields.io/npm/v/edge-location.svg
 [npm-url]: https://npmjs.org/package/edge-location
+[action-image]: https://github.com/cezaraugusto/edge-location/workflows/CI/badge.svg
+[action-url]: https://github.com/cezaraugusto/edge-location/actions?query=workflow%3ACI
+[downloads-image]: https://img.shields.io/npm/dm/edge-location.svg
+[downloads-url]: https://npmjs.org/package/edge-location
 
-# edge-location [![workflow][action-image]][action-url] [![npm][npm-image]][npm-url]
+# edge-location [![npm][npm-image]][npm-url] [![workflow][action-image]][action-url] [![downloads][downloads-image]][downloads-url] 
 
 > Approximates the current location of the Edge browser across platforms.
 
@@ -12,19 +14,23 @@
 **Via Node.js:**
 
 ```js
-// Returns the path to edge as a string.
-const edgeLocation = require('edge-location')
+// ESM
+import edgeLocation from 'edge-location'
 
-console.log(edgeLocation())
+// Returns the path to Edge as a string
+const path = edgeLocation()
+console.log(path)
 // /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge
+
+// CommonJS
+const edgeLocation = require('edge-location')
 ```
 
-**Via CLI:**
+## Supported Platforms
 
-```bash
-> npx edge-location
-# /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge
-```
+- macOS (darwin)
+- Windows (win32)
+- Linux (default fallback)
 
 ## Related projects
 
