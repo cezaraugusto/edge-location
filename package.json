@@ -5,7 +5,7 @@
     "url": "https://github.com/cezaraugusto/edge-location.git"
   },
   "name": "edge-location",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Approximates the current location of the Edge browser across platforms.",
   "type": "module",
   "exports": {
