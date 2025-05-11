@@ -18,8 +18,7 @@
 import edgeLocation from 'edge-location'
 
 // Returns the path to Edge as a string
-const path = edgeLocation()
-console.log(path)
+console.log(edgeLocation)
 // /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge
 
 // CommonJS
