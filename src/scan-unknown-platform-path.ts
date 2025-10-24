@@ -1,13 +1,23 @@
 import which from 'which';
 
-export default function scanUnknownPlatform() {
-  let browserPath = null;
+type WhichLike = { sync: (cmd: string) => string };
+type Deps = { which?: WhichLike };
 
-  try {
-    browserPath = which.sync('microsoft-edge');
-  } catch (err) {
-    browserPath = null;
+export default function scanUnknownPlatform(deps?: Deps) {
+  const w = deps?.which ?? which;
+  const candidates = [
+    'microsoft-edge',
+    'microsoft-edge-beta',
+    'microsoft-edge-dev',
+    'microsoft-edge-canary',
+  ];
+
+  for (const cmd of candidates) {
+    try {
+      const resolved = w.sync(cmd);
+      if (resolved) return resolved;
+    } catch (_) {}
   }
 
-  return browserPath;
+  return null;
 }
