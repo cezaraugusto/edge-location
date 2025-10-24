@@ -4,27 +4,31 @@ import * as process from 'process';
 
 const { env } = process;
 
-export default function scanWindowsPath() {
-  let browserPath = null;
+type FsLike = { existsSync: (path: string) => boolean };
+type Deps = { fs?: FsLike; env?: NodeJS.ProcessEnv };
 
+export default function scanWindowsPath(deps?: Deps) {
+  const f: FsLike = deps?.fs ?? fs;
+  const e = deps?.env ?? env;
   const prefixes = [
-    env.LOCALAPPDATA,
-    env.PROGRAMFILES,
-    env['PROGRAMFILES(X86)'],
+    e.LOCALAPPDATA,
+    e.PROGRAMFILES,
+    e['PROGRAMFILES(X86)'],
+  ].filter(Boolean);
+
+  const suffixes = [
+    '\\Microsoft\\Edge\\Application\\msedge.exe',
+    '\\Microsoft\\Edge Beta\\Application\\msedge.exe',
+    '\\Microsoft\\Edge Dev\\Application\\msedge.exe',
+    '\\Microsoft\\Edge SxS\\Application\\msedge.exe', // Canary
   ];
 
-  const suffix = '\\Microsoft\\Edge\\Application\\msedge.exe';
-
   for (const prefix of prefixes) {
-    if (!prefix) continue;
-
-    const exe = path.join(prefix, suffix);
-
-    if (fs.existsSync(exe)) {
-      browserPath = exe;
-      break;
+    for (const suffix of suffixes) {
+      const exe = path.join(prefix as string, suffix);
+      if (f.existsSync(exe)) return exe;
     }
   }
 
-  return browserPath;
+  return null;
 }
