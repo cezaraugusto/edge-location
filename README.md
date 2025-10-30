@@ -11,13 +11,13 @@
 
 <img alt="Edge" align="right" src="https://cdn.jsdelivr.net/gh/extension-js/media@db5deb23fbfa85530f8146718812972998e13a4d/browser_logos/svg/edge.svg" width="10.5%" />
 
-* Finds Edge in the following channel order: `stable` / `beta` / `dev` / `canary`.
+* By default checks only `stable`. Optionally can cascade to `beta` / `dev` / `canary`.
 * Supports macOS / Windows / Linux
 * Works both as an ES module or CommonJS
 
 ## Support table
 
-This table lists the default locations where Edge is typically installed for each supported platform and channel. The package checks these paths (in order) and returns the first one found. 
+This table lists the default locations where Edge is typically installed for each supported platform and channel. By default, only the Stable channel is checked. When fallback is enabled, the package checks these paths (in order) and returns the first one found.
 
 <table>
   <thead>
@@ -142,34 +142,42 @@ This table lists the default locations where Edge is typically installed for eac
   </tbody>
 </table>
 
-Returns the first existing path found, or <code>null</code> if none are found.
+Returns the first existing path found (given selected channels), or <code>null</code> if none are found.
 
 ## Usage
 
-**Via Node.js:**
+**Via Node.js (strict by default):**
 
 ```js
 import edgeLocation from "edge-location";
 
+// Strict (Stable only)
 console.log(edgeLocation());
-// /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge
+// => "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge" or null
+
+// Enable fallback (Stable / Beta / Dev / Canary)
+console.log(edgeLocation(true));
+// => first found among Stable/Beta/Dev/Canary or null
 ```
 
 **Via CLI:**
 
 ```bash
 npx edge-location
-# /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge
+# Strict (Stable only)
+
+npx edge-location --fallback
+# Enable cascade (Stable / Beta / Dev / Canary)
 ```
 
 ## Related projects
 
-* [chrome-location](https://github.com/hughsk/chrome-location)
-* [chrome-location2](https://github.com/cezaraugusto/chrome-location2) (like `chromium-location` with fallback support to Chromium)
-* [firefox-location](https://github.com/hughsk/firefox-location)
 * [brave-location](https://github.com/cezaraugusto/brave-location)
-* [vivaldi-location](https://github.com/jandrey/vivaldi-location)
-* [opera-location](https://github.com/jandrey/opera-location)
+* [chrome-location2](https://github.com/cezaraugusto/chrome-location2)
+* [firefox-location2](https://github.com/cezaraugusto/firefox-location2)
+* [opera-location2](https://github.com/cezaraugusto/opera-location2)
+* [vivaldi-location2](https://github.com/cezaraugusto/vivaldi-location2)
+* [yandex-location2](https://github.com/cezaraugusto/yandex-location2)
 
 ## License
 
