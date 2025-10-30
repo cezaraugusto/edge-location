@@ -2,5 +2,8 @@
 
 const locateEdge = require('./dist/index.cjs').default || require('./dist/index.cjs');
 
-console.log(locateEdge());
+const argv = process.argv.slice(2);
+const allowFallback = argv.includes('--fallback') || argv.includes('-f');
+
+console.log(locateEdge(allowFallback));
 
