@@ -11,5 +11,5 @@ export default defineConfig({
       format: 'cjs',
       syntax: 'es2021',
     },
-  ]
+  ],
 });
