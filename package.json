@@ -5,7 +5,7 @@
     "url": "https://github.com/cezaraugusto/edge-location.git"
   },
   "name": "edge-location",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Approximates the current location of the Edge browser across platforms.",
   "homepage": "https://www.npmjs.com/package/edge-location",
   "type": "module",
@@ -18,7 +18,9 @@
   },
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "bin": {
     "edge-location": "bin.js"
   },
