@@ -224,6 +224,12 @@ Alternatively, install Microsoft Edge from the official site and re-run.
 - `locateEdgeOrExplain(options?: boolean | { allowFallback?: boolean }): string`
   - Returns a path if found, otherwise throws an `Error` with a friendly installation guide.
 
+- `getEdgeVersion(bin: string, opts?: { allowExec?: boolean }): string | null`
+  - Cross-platform version resolver that does not execute the browser by default.
+  - Windows: reads PE file metadata via PowerShell (no GUI spawn).
+  - macOS: reads `Info.plist` (no GUI spawn).
+  - Linux/other: returns `null` unless `allowExec` is `true`, then tries `--version`.
+
 - `getInstallGuidance(): string`
   - Returns the same guidance text used by `locateEdgeOrExplain()`.
 
