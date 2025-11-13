@@ -6,7 +6,7 @@ import scanWindowsPath from './scan-windows-path';
 import scanUnknownPlatformPath from './scan-unknown-platform-path';
 import { resolveFromPlaywrightCache } from './resolve-playwright-cache';
 
-export type FsLike = { existsSync: (p: string) => boolean };
+export type FsLike = Pick<typeof fs, 'existsSync' | 'readdirSync'>;
 export type WhichLike = { sync: (cmd: string) => string };
 export type Deps = {
   fs?: FsLike;
