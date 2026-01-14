@@ -9,7 +9,7 @@
   },
   "engineStrict": false,
   "name": "edge-location",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Approximates the current location of the Edge browser across platforms.",
   "homepage": "https://www.npmjs.com/package/edge-location",
   "type": "module",
