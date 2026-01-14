@@ -1,13 +1,14 @@
 import fs from 'node:fs';
-// @ts-expect-error userhome is not typed
-import userhome from 'userhome';
+import os from 'node:os';
+import path from 'node:path';
 
 type FsLike = { existsSync: (path: string) => boolean };
 type Deps = { fs?: FsLike; userhome?: (path: string) => string };
 
 export default function scanOsxPath(allowFallback = false, deps?: Deps) {
   const f: FsLike = deps?.fs ?? fs;
-  const uh = deps?.userhome ?? userhome;
+  const uh =
+    deps?.userhome ?? ((p: string) => path.join(os.homedir(), String(p)));
   const apps = [
     { app: 'Microsoft Edge.app', exec: 'Microsoft Edge' },
     { app: 'Microsoft Edge Beta.app', exec: 'Microsoft Edge Beta' },

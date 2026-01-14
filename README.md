@@ -240,7 +240,7 @@ Alternatively, install Microsoft Edge from the official site and re-run.
 - [firefox-location2](https://github.com/cezaraugusto/firefox-location2)
 - [opera-location2](https://github.com/cezaraugusto/opera-location2)
 - [vivaldi-location2](https://github.com/cezaraugusto/vivaldi-location2)
-- [yandex-location2](https://github.com/cezaraugusto/yandex-location2)
+- [yandex-location](https://github.com/cezaraugusto/yandex-location)
 
 ## License
 
