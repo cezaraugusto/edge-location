@@ -1,15 +1,12 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import * as process from 'process';
-
-const { env } = process;
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 
 type FsLike = { existsSync: (path: string) => boolean };
 type Deps = { fs?: FsLike; env?: NodeJS.ProcessEnv };
 
 export default function scanWindowsPath(allowFallback = false, deps?: Deps) {
   const f: FsLike = deps?.fs ?? fs;
-  const e = deps?.env ?? env;
+  const e = deps?.env ?? process.env;
   const prefixes = [
     e.LOCALAPPDATA,
     e.PROGRAMFILES,
