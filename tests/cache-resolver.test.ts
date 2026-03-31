@@ -33,6 +33,24 @@ describe('resolveFromPlaywrightCache', () => {
     expect(out).toBe(bin);
   });
 
+  test('honors PLAYWRIGHT_BROWSERS_PATH override (macOS)', () => {
+    const home = '/Users/alice';
+    const overrideBase = '/tmp/managed/edge';
+    const base = `${overrideBase}/msedge-123`;
+    const bin = `${base}/Microsoft Edge.app/Contents/MacOS/Microsoft Edge`;
+    const fs = makeFs({
+      [overrideBase]: 'dir',
+      [base]: 'dir',
+      [bin]: 'file',
+    });
+    const out = resolveFromPlaywrightCache({
+      fs,
+      env: { HOME: home, PLAYWRIGHT_BROWSERS_PATH: overrideBase } as any,
+      platform: 'darwin',
+    });
+    expect(out).toBe(bin);
+  });
+
   test('Linux resolves Edge binary', () => {
     const home = '/home/alice';
     const base = `${home}/.cache/ms-playwright/msedge-123`;
