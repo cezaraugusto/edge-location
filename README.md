@@ -1,4 +1,4 @@
-[npm-version-image]: https://img.shields.io/npm/v/edge-location.svg?color=0078D7
+[npm-version-image]: https://img.shields.io/npm/v/edge-location.svg?color=0971fe
 [npm-version-url]: https://www.npmjs.com/package/edge-location
 [npm-downloads-image]: https://img.shields.io/npm/dm/edge-location.svg?color=2ecc40
 [npm-downloads-url]: https://www.npmjs.com/package/edge-location
