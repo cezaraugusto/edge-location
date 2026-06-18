@@ -19,7 +19,7 @@ export function resolveFromPlaywrightCache (deps?: {
   try {
     const override = String(env.PLAYWRIGHT_BROWSERS_PATH || '').trim()
     const overrideBase =
-      override && override !== '0' ? path.resolve(override) : ''
+      override && override !== '0' ? p.resolve(override) : ''
 
     if (platform === 'darwin') {
       const home = deps?.homeDir ?? env.HOME ?? ''
