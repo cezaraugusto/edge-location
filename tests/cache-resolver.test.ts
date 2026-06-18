@@ -19,7 +19,7 @@ const makeFs = (entries: Record<string, 'file' | 'dir'>) => {
 }
 
 describe('resolveFromPlaywrightCache', () => {
-  test('macOS resolves Edge binary', () => {
+  it('macOS resolves Edge binary', () => {
     const home = '/Users/alice'
     const base = `${home}/Library/Caches/ms-playwright/msedge-123`
     const bin = `${base}/Microsoft Edge.app/Contents/MacOS/Microsoft Edge`
@@ -38,7 +38,7 @@ describe('resolveFromPlaywrightCache', () => {
     expect(out).toBe(bin)
   })
 
-  test('honors PLAYWRIGHT_BROWSERS_PATH override (macOS)', () => {
+  it('honors PLAYWRIGHT_BROWSERS_PATH override (macOS)', () => {
     const home = '/Users/alice'
     const overrideBase = '/tmp/managed/edge'
     const base = `${overrideBase}/msedge-123`
@@ -58,7 +58,7 @@ describe('resolveFromPlaywrightCache', () => {
     expect(out).toBe(bin)
   })
 
-  test('Linux resolves Edge binary', () => {
+  it('Linux resolves Edge binary', () => {
     const home = '/home/alice'
     const base = `${home}/.cache/ms-playwright/msedge-123`
     const bin = `${base}/msedge`
@@ -77,7 +77,7 @@ describe('resolveFromPlaywrightCache', () => {
     expect(out).toBe(bin)
   })
 
-  test('Windows resolves Edge binary (win64 preferred)', () => {
+  it('Windows resolves Edge binary (win64 preferred)', () => {
     const lad = 'C:/Users/Alice/AppData/Local'
     const base = `${lad}/ms-playwright/msedge-123`
     const bin64 = `${base}/msedge-win64/msedge.exe`
