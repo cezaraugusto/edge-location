@@ -54,7 +54,7 @@
     "guesstimate"
   ],
   "dependencies": {
-    "which": "^2.0.2"
+    "which": "^7.0.0"
   },
   "devDependencies": {
     "@rslib/core": "^0.6.9",
