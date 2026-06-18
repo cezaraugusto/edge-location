@@ -6,10 +6,11 @@ const makeFs = (entries: Record<string, 'file' | 'dir'>) => {
   return {
     existsSync: (p: string) => Boolean(entries[p]),
     readdirSync: (p: string) => {
-      const prefix = p.endsWith('/') ? p : `${p}/`
+      const sep = p.includes('\\') ? '\\' : '/'
+      const prefix = p.endsWith(sep) ? p : `${p}${sep}`
       const names = Object.keys(entries)
         .filter((k) => k.startsWith(prefix))
-        .map((k) => k.slice(prefix.length).split('/')[0])
+        .map((k) => k.slice(prefix.length).split(/[\\/]/)[0])
 
       const unique = Array.from(new Set(names))
 
@@ -78,11 +79,11 @@ describe('resolveFromPlaywrightCache', () => {
   })
 
   it('Windows resolves Edge binary (win64 preferred)', () => {
-    const lad = 'C:/Users/Alice/AppData/Local'
-    const base = `${lad}/ms-playwright/msedge-123`
-    const bin64 = `${base}/msedge-win64/msedge.exe`
+    const lad = 'C:\\Users\\Alice\\AppData\\Local'
+    const base = `${lad}\\ms-playwright\\msedge-123`
+    const bin64 = `${base}\\msedge-win64\\msedge.exe`
     const fs = makeFs({
-      [`${lad}/ms-playwright`]: 'dir',
+      [`${lad}\\ms-playwright`]: 'dir',
       [`${base}`]: 'dir',
       [bin64]: 'file'
     })

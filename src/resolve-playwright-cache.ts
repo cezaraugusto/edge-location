@@ -14,6 +14,7 @@ export function resolveFromPlaywrightCache (deps?: {
   const f: FsLike = deps?.fs ?? fs
   const env: EnvLike = deps?.env ?? process.env
   const platform: NodeJS.Platform = deps?.platform ?? process.platform
+  const p = platform === 'win32' ? path.win32 : path.posix
 
   try {
     const override = String(env.PLAYWRIGHT_BROWSERS_PATH || '').trim()
@@ -26,7 +27,7 @@ export function resolveFromPlaywrightCache (deps?: {
 
       if (overrideBase) bases.push(overrideBase)
 
-      if (home) bases.push(path.join(home, 'Library', 'Caches', 'ms-playwright'))
+      if (home) bases.push(p.join(home, 'Library', 'Caches', 'ms-playwright'))
 
       if (bases.length === 0) return null
 
@@ -37,7 +38,7 @@ export function resolveFromPlaywrightCache (deps?: {
         for (const d of dirs) {
           // Common layouts observed for Playwright browser downloads
           candidates.push(
-            path.join(
+            p.join(
               base,
               d,
               'Microsoft Edge.app',
@@ -48,11 +49,11 @@ export function resolveFromPlaywrightCache (deps?: {
           )
           // Alternate folder names occasionally seen
           candidates.push(
-            path.join(base, d, 'msedge.app', 'Contents', 'MacOS', 'msedge')
+            p.join(base, d, 'msedge.app', 'Contents', 'MacOS', 'msedge')
           )
           // Channel subfolders
           candidates.push(
-            path.join(
+            p.join(
               base,
               d,
               'msedge-mac',
@@ -63,7 +64,7 @@ export function resolveFromPlaywrightCache (deps?: {
             )
           )
           candidates.push(
-            path.join(
+            p.join(
               base,
               d,
               'msedge-mac-arm64',
@@ -89,7 +90,7 @@ export function resolveFromPlaywrightCache (deps?: {
 
       if (overrideBase) bases.push(overrideBase)
 
-      if (lad) bases.push(path.join(lad, 'ms-playwright'))
+      if (lad) bases.push(p.join(lad, 'ms-playwright'))
 
       if (bases.length === 0) return null
 
@@ -98,10 +99,10 @@ export function resolveFromPlaywrightCache (deps?: {
         const candidates: string[] = []
 
         for (const d of dirs) {
-          candidates.push(path.join(base, d, 'msedge.exe'))
-          candidates.push(path.join(base, d, 'msedge', 'msedge.exe'))
-          candidates.push(path.join(base, d, 'msedge-win64', 'msedge.exe'))
-          candidates.push(path.join(base, d, 'msedge-win32', 'msedge.exe'))
+          candidates.push(p.join(base, d, 'msedge.exe'))
+          candidates.push(p.join(base, d, 'msedge', 'msedge.exe'))
+          candidates.push(p.join(base, d, 'msedge-win64', 'msedge.exe'))
+          candidates.push(p.join(base, d, 'msedge-win32', 'msedge.exe'))
         }
 
         const found = firstExisting(f, candidates)
@@ -115,12 +116,12 @@ export function resolveFromPlaywrightCache (deps?: {
     // Linux and others
     const xdg = env.XDG_CACHE_HOME
     const home = deps?.homeDir ?? env.HOME ?? ''
-    const cacheBase = xdg || (home ? path.join(home, '.cache') : undefined)
+    const cacheBase = xdg || (home ? p.join(home, '.cache') : undefined)
     const bases: string[] = []
 
     if (overrideBase) bases.push(overrideBase)
 
-    if (cacheBase) bases.push(path.join(cacheBase, 'ms-playwright'))
+    if (cacheBase) bases.push(p.join(cacheBase, 'ms-playwright'))
 
     if (bases.length === 0) return null
 
@@ -129,10 +130,10 @@ export function resolveFromPlaywrightCache (deps?: {
       const candidates: string[] = []
 
       for (const d of dirs) {
-        candidates.push(path.join(base, d, 'msedge'))
-        candidates.push(path.join(base, d, 'msedge', 'msedge'))
-        candidates.push(path.join(base, d, 'msedge-linux', 'msedge'))
-        candidates.push(path.join(base, d, 'msedge-linux-64', 'msedge'))
+        candidates.push(p.join(base, d, 'msedge'))
+        candidates.push(p.join(base, d, 'msedge', 'msedge'))
+        candidates.push(p.join(base, d, 'msedge-linux', 'msedge'))
+        candidates.push(p.join(base, d, 'msedge-linux-64', 'msedge'))
       }
 
       const found = firstExisting(f, candidates)
