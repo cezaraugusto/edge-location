@@ -8,7 +8,7 @@ describe('edge-location fallbacks', () => {
     vi.resetModules()
   })
 
-  test('macOS: strict null, fallback finds Beta', async () => {
+  it('macOS: strict null, fallback finds Beta', async () => {
     const scanOsxPath = (await import('../src/scan-osx-path')).default as any
     const strict = scanOsxPath(false, {
       fs: {existsSync: (p: string) => p.includes('Microsoft Edge Beta.app')},
@@ -24,7 +24,7 @@ describe('edge-location fallbacks', () => {
     expect(fallback).toMatch(/Microsoft Edge Beta\.app/)
   })
 
-  test('Windows: strict null, fallback finds Beta', async () => {
+  it('Windows: strict null, fallback finds Beta', async () => {
     const scanWindowsPath = (await import('../src/scan-windows-path'))
       .default as any
 
@@ -50,7 +50,7 @@ describe('edge-location fallbacks', () => {
     expect(fallback).toMatch(/Edge Beta/)
   })
 
-  test('Linux/other: strict only stable; fallback tries beta/dev', async () => {
+  it('Linux/other: strict only stable; fallback tries beta/dev', async () => {
     const scanUnknown = (await import('../src/scan-unknown-platform-path'))
       .default as any
 
@@ -83,7 +83,7 @@ describe('edge-location fallbacks', () => {
     expect(calls.includes('microsoft-edge')).toBe(true)
   })
 
-  test('macOS: returns null when nothing found', async () => {
+  it('macOS: returns null when nothing found', async () => {
     const scanOsxPath = (await import('../src/scan-osx-path')).default as any
 
     expect(
@@ -94,7 +94,7 @@ describe('edge-location fallbacks', () => {
     ).toBeNull()
   })
 
-  test('Windows: returns null when nothing found', async () => {
+  it('Windows: returns null when nothing found', async () => {
     const scanWindowsPath = (await import('../src/scan-windows-path'))
       .default as any
 
@@ -110,7 +110,7 @@ describe('edge-location fallbacks', () => {
     ).toBeNull()
   })
 
-  test('Linux/other: returns null when which finds nothing', async () => {
+  it('Linux/other: returns null when which finds nothing', async () => {
     const scanUnknown = (await import('../src/scan-unknown-platform-path'))
       .default as any
 

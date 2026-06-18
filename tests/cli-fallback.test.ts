@@ -8,7 +8,7 @@ import {describe, expect, test} from 'vitest'
 const BIN = path.join(__dirname, '..', 'bin.cjs')
 
 describe('edge-location CLI', () => {
-  test('prints guidance and exit code 1 when not found', () => {
+  it('prints guidance and exit code 1 when not found', () => {
     let code = 0
     let out = ''
 
@@ -41,7 +41,7 @@ describe('edge-location CLI', () => {
     }
   })
 
-  test('prints env override path when EDGE_BINARY is set and exists', () => {
+  it('prints env override path when EDGE_BINARY is set and exists', () => {
     const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'edge-bin-'))
     const fake = path.join(
       tmp,
