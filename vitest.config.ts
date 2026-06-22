@@ -1,8 +1,11 @@
 import {defineConfig} from 'vitest/config'
 
 export default defineConfig({
-  // Configure Vitest (https://vitest.dev/config/)
   test: {
-    globals: true
+    globals: true,
+    pool: 'forks',
+    isolate: false,
+    fileParallelism: false,
+    maxWorkers: 1
   }
 })
