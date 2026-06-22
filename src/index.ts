@@ -61,12 +61,12 @@ export function getInstallGuidance (): string {
   return [
     "We couldn't find a Microsoft Edge browser on this machine.",
     '',
-    "Here's the fastest way to get set up:",
+    'To install one:',
     '',
     '1) Install Edge via Playwright (recommended for CI/dev)',
     '   npx playwright install msedge',
     '',
-    "Then re-run your command, and we'll detect it automatically.",
+    'Re-run your command afterward and it will be detected automatically.',
     '',
     'Alternatively, install Microsoft Edge from the official site and re-run.'
   ].join('\n')
