@@ -66,7 +66,7 @@ export function getInstallGuidance (): string {
     '1) Install Edge via Playwright (recommended for CI/dev)',
     '   npx playwright install msedge',
     '',
-    "Then re-run your command , we'll detect it automatically.",
+    "Then re-run your command, and we'll detect it automatically.",
     '',
     'Alternatively, install Microsoft Edge from the official site and re-run.'
   ].join('\n')
