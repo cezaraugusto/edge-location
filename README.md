@@ -15,15 +15,90 @@
 - Supports macOS / Windows / Linux
 - Works both as an ES module or CommonJS
 
-New in this version:
+## Installation
 
-- Honors environment override: `EDGE_BINARY`
-- Optional helper to throw with a friendly install guide when nothing is found
-- Install guidance uses Playwright for Edge: `npx playwright install msedge`
+```bash
+npm i edge-location
+```
+
+## Usage
+
+**Via Node.js (strict by default):**
+
+```js
+import edgeLocation from 'edge-location'
+
+// Strict (Stable only)
+console.log(edgeLocation())
+// => "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge" or null
+
+// Enable fallback (Stable / Beta / Dev / Canary)
+console.log(edgeLocation(true))
+// => first found among Stable/Beta/Dev/Canary or null
+
+// Throw with a friendly, copy-pasteable guide when not found
+import {locateEdgeOrExplain, getInstallGuidance} from 'edge-location'
+try {
+  const path = locateEdgeOrExplain({allowFallback: true})
+  console.log(path)
+} catch (e) {
+  console.error(String(e))
+  // Or print getInstallGuidance() explicitly
+}
+```
+
+**CommonJS:**
+
+```js
+const api = require('edge-location')
+const locateEdge = api.default || api
+```
+
+**Via CLI:**
+
+```bash
+npx edge-location
+# Strict (Stable only)
+
+npx edge-location --fallback
+# Enable cascade (Stable / Beta / Dev / Canary)
+
+# Respect environment overrides
+EDGE_BINARY=/custom/path/to/msedge npx edge-location
+
+# If not found, install Edge via Playwright and re-run
+npx playwright install msedge
+```
+
+### Environment overrides
+
+If this environment variable is set and points to an existing binary, it takes precedence:
+
+- `EDGE_BINARY`
+
+### When nothing is found
+
+The helper returns actionable guidance:
+
+```
+We couldn't find a Microsoft Edge browser on this machine.
+
+Here's the fastest way to get set up:
+
+1) Install Edge via Playwright (recommended for CI/dev)
+   npx playwright install msedge
+
+Then re-run your command, and we'll detect it automatically.
+
+Alternatively, install Microsoft Edge from the official site and re-run.
+```
 
 ## Support table
 
-This table lists the default locations where Edge is typically installed for each supported platform and channel. By default, only the Stable channel is checked. When fallback is enabled, the package checks these paths (in order) and returns the first one found.
+By default, only the Stable channel is checked. When fallback is enabled, Beta, Dev, and Canary are also checked (in that order) and the first existing path is returned.
+
+<details>
+<summary>Default locations checked per platform and channel</summary>
 
 <table>
   <thead>
@@ -148,72 +223,9 @@ This table lists the default locations where Edge is typically installed for eac
   </tbody>
 </table>
 
+</details>
+
 Returns the first existing path found (given selected channels), or <code>null</code> if none are found.
-
-## Usage
-
-**Via Node.js (strict by default):**
-
-```js
-import edgeLocation from 'edge-location'
-
-// Strict (Stable only)
-console.log(edgeLocation())
-// => "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge" or null
-
-// Enable fallback (Stable / Beta / Dev / Canary)
-console.log(edgeLocation(true))
-// => first found among Stable/Beta/Dev/Canary or null
-
-// Throw with a friendly, copy-pasteable guide when not found
-import {locateEdgeOrExplain, getInstallGuidance} from 'edge-location'
-try {
-  const path = locateEdgeOrExplain({allowFallback: true})
-  console.log(path)
-} catch (e) {
-  console.error(String(e))
-  // Or print getInstallGuidance() explicitly
-}
-```
-
-**Via CLI:**
-
-```bash
-npx edge-location
-# Strict (Stable only)
-
-npx edge-location --fallback
-# Enable cascade (Stable / Beta / Dev / Canary)
-
-# Respect environment overrides
-EDGE_BINARY=/custom/path/to/msedge npx edge-location
-
-# If not found, install Edge via Playwright and re-run
-npx playwright install msedge
-```
-
-### Environment overrides
-
-If this environment variable is set and points to an existing binary, it takes precedence:
-
-- `EDGE_BINARY`
-
-### When nothing is found
-
-The helper returns actionable guidance:
-
-```
-We couldn't find a Microsoft Edge browser on this machine.
-
-Here's the fastest way to get set up:
-
-1) Install Edge via Playwright (recommended for CI/dev)
-   npx playwright install msedge
-
-Then re-run your command , we'll detect it automatically.
-
-Alternatively, install Microsoft Edge from the official site and re-run.
-```
 
 ## API
 
@@ -237,9 +249,13 @@ Alternatively, install Microsoft Edge from the official site and re-run.
 
 - [brave-location](https://github.com/cezaraugusto/brave-location)
 - [chrome-location2](https://github.com/cezaraugusto/chrome-location2)
+- [chromium-location](https://github.com/cezaraugusto/chromium-location)
 - [firefox-location2](https://github.com/cezaraugusto/firefox-location2)
+- [safari-location2](https://github.com/cezaraugusto/safari-location2)
 - [opera-location2](https://github.com/cezaraugusto/opera-location2)
 - [vivaldi-location2](https://github.com/cezaraugusto/vivaldi-location2)
+- [waterfox-location](https://github.com/cezaraugusto/waterfox-location)
+- [librewolf-location](https://github.com/cezaraugusto/librewolf-location)
 - [yandex-location](https://github.com/cezaraugusto/yandex-location)
 
 ## License
