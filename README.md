@@ -78,7 +78,7 @@ If this environment variable is set and points to an existing binary, it takes p
 
 ### When nothing is found
 
-The helper returns actionable guidance:
+When nothing is found, the helper throws with this message:
 
 ```
 We couldn't find a Microsoft Edge browser on this machine.
