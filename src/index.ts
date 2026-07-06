@@ -57,19 +57,50 @@ export default function locateEdge (
   return found
 }
 
-export function getInstallGuidance (): string {
-  return [
+export type InstallGuidanceStep = {
+  summary: string;
+  command: string;
+}
+
+export type InstallGuidanceOptions = {
+  // Caller-provided install steps replacing the default hint. Tools that
+  // manage their own browser installs pass their own installer commands
+  // here; with no steps the default guidance is kept.
+  steps?: InstallGuidanceStep[];
+}
+
+const DEFAULT_INSTALL_STEPS: InstallGuidanceStep[] = [
+  {
+    summary: 'Install Edge via Playwright (recommended for CI/dev)',
+    command: 'npx playwright install msedge'
+  }
+]
+
+export function getInstallGuidance (opts?: InstallGuidanceOptions): string {
+  const steps = opts?.steps?.length ? opts.steps : DEFAULT_INSTALL_STEPS
+
+  const lines = [
     "We couldn't find a Microsoft Edge browser on this machine.",
     '',
     'To install one:',
-    '',
-    '1) Install Edge via Playwright (recommended for CI/dev)',
-    '   npx playwright install msedge',
-    '',
-    'Re-run your command afterward and it will be detected automatically.',
-    '',
+    ''
+  ]
+
+  steps.forEach((step, index) => {
+    lines.push(`${index + 1}) ${step.summary}`)
+    lines.push(`   ${step.command}`)
+    lines.push('')
+  })
+
+  lines.push(
+    'Re-run your command afterward and it will be detected automatically.'
+  )
+  lines.push('')
+  lines.push(
     'Alternatively, install Microsoft Edge from the official site and re-run.'
-  ].join('\n')
+  )
+
+  return lines.join('\n')
 }
 
 export function locateEdgeOrExplain (
